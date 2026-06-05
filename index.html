@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GE Resource Hub — Youth Development Institute</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ge-blue:#00558C;--ge-blue-80:#337BAA;--ge-blue-60:#66A0C0;
+  --ge-blue-40:#99C4D7;--ge-blue-20:#CCE1EB;--ge-blue-10:#E5F0F5;
+  --ge-bg:#F5F7FA;--ge-surface:#FFFFFF;--ge-stone:#EEF2F6;
+  --ge-text:#0A1A26;--ge-muted:#4A6070;
+  --ge-border:rgba(0,85,140,0.12);--ge-border-mid:rgba(0,85,140,0.22);
+  --radius:8px;--radius-lg:14px;
+  --font-p:'Barlow','Arial',sans-serif;
+  --font-c:'Barlow Condensed','Arial Narrow',sans-serif;
+}
+body{background:var(--ge-bg);color:var(--ge-text);min-height:100vh;font-family:var(--font-p);font-size:15px;line-height:1.6;font-weight:400}
+.ge-symbol{width:36px;height:36px;background:var(--ge-blue);border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ge-symbol svg{width:22px;height:22px}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--ge-border);padding:0 2.5rem;height:62px;display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.nav-brand{display:flex;align-items:center;gap:13px;flex-shrink:0}
+.nav-title{font-family:var(--font-c);font-size:16px;font-weight:700;color:var(--ge-blue);letter-spacing:.04em;line-height:1;text-transform:uppercase}
+.nav-sub{font-size:10.5px;color:var(--ge-muted);font-weight:300;letter-spacing:.03em}
+.nav-links{display:flex;gap:2px;list-style:none}
+.nav-links a{text-decoration:none;font-size:13px;font-weight:400;color:var(--ge-muted);padding:6px 11px;border-radius:6px;transition:background .15s,color .15s;white-space:nowrap}
+.nav-links a:hover{background:var(--ge-blue-10);color:var(--ge-blue)}
+.nav-links a.active{background:var(--ge-blue-10);color:var(--ge-blue);font-weight:500}
+.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.btn-contribute{background:var(--ge-blue);color:white;border:none;border-radius:6px;padding:7px 16px;font-size:13px;font-weight:500;cursor:pointer;transition:background .15s;font-family:inherit;letter-spacing:.01em}
+.btn-contribute:hover{background:var(--ge-blue-80)}
+.avatar{width:32px;height:32px;border-radius:50%;background:var(--ge-blue-10);border:1.5px solid var(--ge-blue-40);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--ge-blue);cursor:pointer;font-family:var(--font-c);letter-spacing:.05em}
+.hero{position:relative;overflow:hidden;padding:4rem 2.5rem 3.5rem}
+.hero-bg{position:absolute;inset:0;background:var(--ge-blue);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M0 24 L24 0 L48 24 L24 48 Z' fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='1'/%3E%3Cpath d='M12 24 L24 12 L36 24 L24 36 Z' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='.75'/%3E%3C/svg%3E")}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(0,30,55,.55) 0%,rgba(0,85,140,0) 65%)}
+.hero-inner{max-width:920px;position:relative;z-index:1}
+.hero-eyebrow{font-size:10.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1rem;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';display:inline-block;width:20px;height:1.5px;background:rgba(255,255,255,.4)}
+.hero h1{font-family:var(--font-c);font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:700;line-height:1.08;margin-bottom:1.1rem;color:white;letter-spacing:.01em;text-transform:uppercase}
+.hero h1 .accent{color:var(--ge-blue-40)}
+.hero-desc{font-size:15px;font-weight:300;color:rgba(255,255,255,.72);max-width:540px;line-height:1.75;margin-bottom:2rem}
+.hero-search{display:flex;max-width:500px;background:white;border-radius:7px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.18)}
+.hero-search input{flex:1;border:none;outline:none;padding:11px 16px;font-size:14px;font-family:inherit;color:var(--ge-text);background:transparent}
+.hero-search input::placeholder{color:#aab}
+.hero-search button{background:var(--ge-blue);color:white;border:none;padding:0 20px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--font-c);letter-spacing:.08em;text-transform:uppercase;transition:background .15s}
+.hero-search button:hover{background:var(--ge-blue-80)}
+.hero-stats{display:flex;gap:2.5rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.12)}
+.hero-stat-val{font-family:var(--font-c);font-size:2rem;font-weight:700;color:white;line-height:1;margin-bottom:4px;letter-spacing:.02em}
+.hero-stat-label{font-size:11.5px;color:rgba(255,255,255,.5);font-weight:300}
+.logo-notice{display:inline-flex;align-items:center;gap:6px;font-size:11px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.12);border-radius:4px;padding:4px 10px;margin-top:1rem;font-style:italic}
+.phase-banner{background:var(--ge-blue-10);border-bottom:1px solid var(--ge-border);padding:.6rem 2.5rem;display:flex;align-items:center;gap:1rem;font-size:12.5px}
+.phase-pill{background:var(--ge-blue);color:white;font-size:10px;font-weight:700;font-family:var(--font-c);letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:3px}
+.phase-banner span{color:var(--ge-muted)}
+.phase-banner strong{color:var(--ge-blue);font-weight:500}
+.page{max-width:1100px;margin:0 auto;padding:2.5rem;display:grid;grid-template-columns:230px 1fr;gap:2.5rem;align-items:start}
+.sidebar{position:sticky;top:82px}
+.sidebar-section{margin-bottom:1.75rem}
+.sidebar-label{font-size:10px;font-weight:700;font-family:var(--font-c);letter-spacing:.12em;text-transform:uppercase;color:var(--ge-muted);margin-bottom:.5rem;padding-left:10px}
+.sidebar-nav{list-style:none;display:flex;flex-direction:column;gap:1px}
+.sidebar-nav a{display:flex;align-items:center;gap:9px;text-decoration:none;font-size:13px;color:var(--ge-muted);padding:7px 10px;border-radius:6px;transition:background .1s,color .1s}
+.sidebar-nav a:hover{background:var(--ge-stone);color:var(--ge-text)}
+.sidebar-nav a.active{background:var(--ge-blue-10);color:var(--ge-blue);font-weight:500}
+.count-badge{margin-left:auto;background:var(--ge-stone);color:var(--ge-muted);font-size:10px;font-weight:700;border-radius:10px;padding:1px 7px;font-family:var(--font-c);letter-spacing:.04em}
+.sidebar-nav a.active .count-badge{background:var(--ge-blue-20);color:var(--ge-blue)}
+.filter-box{background:white;border:1px solid var(--ge-border);border-radius:var(--radius);padding:.9rem 1rem;margin-bottom:10px}
+.filter-title{font-size:10px;font-weight:700;font-family:var(--font-c);letter-spacing:.1em;text-transform:uppercase;color:var(--ge-muted);margin-bottom:8px}
+.filter-chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{font-size:11.5px;border-radius:3px;padding:3px 9px;cursor:pointer;border:1px solid var(--ge-border-mid);color:var(--ge-muted);background:transparent;font-family:inherit;transition:all .1s}
+.chip:hover,.chip.on{background:var(--ge-blue-10);border-color:var(--ge-blue-40);color:var(--ge-blue)}
+.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1rem}
+.section-title{font-family:var(--font-c);font-size:1.25rem;font-weight:700;color:var(--ge-text);text-transform:uppercase;letter-spacing:.04em}
+.section-link{font-size:12.5px;color:var(--ge-blue);text-decoration:none;font-weight:500}
+.section-link:hover{text-decoration:underline}
+.highlights-rail{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:2.25rem}
+.highlight-card{background:white;border:1px solid var(--ge-border);border-top:3px solid var(--ge-blue);border-radius:var(--radius);padding:1rem}
+.highlight-label{font-size:10px;font-weight:700;font-family:var(--font-c);text-transform:uppercase;letter-spacing:.1em;color:var(--ge-muted);margin-bottom:6px}
+.highlight-val{font-family:var(--font-c);font-size:2rem;font-weight:700;color:var(--ge-blue);line-height:1;margin-bottom:4px}
+.highlight-desc{font-size:11.5px;color:var(--ge-muted);font-weight:300}
+.use-case-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:2.25rem}
+.use-case-card{background:white;border:1px solid var(--ge-border);border-radius:var(--radius-lg);padding:1.25rem 1.35rem;display:flex;flex-direction:column;gap:7px;transition:border-color .15s,transform .12s;cursor:pointer}
+.use-case-card:hover{border-color:var(--ge-blue-60);transform:translateY(-1px)}
+.uc-icon{width:36px;height:36px;border-radius:6px;background:var(--ge-blue);display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:2px;flex-shrink:0}
+.uc-title{font-size:13.5px;font-weight:500;color:var(--ge-text);line-height:1.3}
+.uc-desc{font-size:12px;color:var(--ge-muted);font-weight:300;line-height:1.5}
+.uc-count{font-size:11px;color:var(--ge-blue);font-weight:500;margin-top:auto;padding-top:6px}
+.resource-grid{display:flex;flex-direction:column;gap:7px;margin-bottom:2.25rem}
+.resource-card{background:white;border:1px solid var(--ge-border);border-radius:var(--radius);padding:1rem 1.2rem;display:flex;align-items:flex-start;gap:13px;cursor:pointer;transition:border-color .12s}
+.resource-card:hover{border-color:var(--ge-blue-60)}
+.res-icon{width:34px;height:34px;min-width:34px;border-radius:6px;background:var(--ge-blue-10);display:flex;align-items:center;justify-content:center;font-size:15px}
+.res-body{flex:1;min-width:0}
+.res-title{font-size:13.5px;font-weight:500;color:var(--ge-text);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.res-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.res-desc{font-size:12px;color:var(--ge-muted);font-weight:300;margin-top:3px;line-height:1.5}
+.tier-badge{font-size:10px;font-weight:700;font-family:var(--font-c);letter-spacing:.06em;padding:2px 7px;border-radius:3px;text-transform:uppercase;white-space:nowrap}
+.tier-1{background:var(--ge-blue-10);color:var(--ge-blue-80)}
+.tier-2{background:var(--ge-blue-20);color:var(--ge-blue)}
+.tier-3{background:var(--ge-blue);color:white}
+.tag{font-size:10.5px;background:var(--ge-stone);color:var(--ge-muted);padding:2px 7px;border-radius:3px}
+.res-actions{display:flex;align-items:center;gap:7px;margin-left:auto;padding-left:8px}
+.btn-icon{width:30px;height:30px;border-radius:5px;border:1px solid var(--ge-border);background:transparent;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;color:var(--ge-muted);transition:background .1s}
+.btn-icon:hover{background:var(--ge-stone)}
+.btn-dl{background:var(--ge-blue);color:white;border:none;font-size:11px;font-weight:700;font-family:var(--font-c);letter-spacing:.07em;text-transform:uppercase;padding:5px 12px;border-radius:5px;cursor:pointer;white-space:nowrap;transition:background .12s}
+.btn-dl:hover{background:var(--ge-blue-80)}
+.cop-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:2.25rem}
+.cop-card{background:white;border:1px solid var(--ge-border);border-radius:var(--radius);padding:1rem 1.1rem;cursor:pointer;transition:border-color .12s}
+.cop-card:hover{border-color:var(--ge-blue-60)}
+.cop-members{display:flex;margin-bottom:10px}
+.cop-av{width:26px;height:26px;border-radius:50%;border:2px solid white;background:var(--ge-blue-20);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:var(--ge-blue);margin-left:-6px;font-family:var(--font-c);letter-spacing:.04em}
+.cop-av:first-child{margin-left:0}
+.cop-title{font-size:13px;font-weight:500;color:var(--ge-text);margin-bottom:3px}
+.cop-role{font-size:11px;color:var(--ge-muted);font-weight:300}
+.cop-activity{margin-top:8px;font-size:11px;color:var(--ge-blue);font-weight:500}
+.tiers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:2.25rem}
+.tier-card{border:1px solid var(--ge-border);border-radius:var(--radius);overflow:hidden}
+.tier-card-head{padding:10px 14px;display:flex;align-items:center;gap:8px}
+.t1{background:var(--ge-blue-40)}.t2{background:var(--ge-blue-60)}.t3{background:var(--ge-blue)}
+.tier-card-title{font-family:var(--font-c);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:white}
+.t1 .tier-card-title{color:var(--ge-blue)}
+.tier-card-body{padding:12px 14px;background:white}
+.tier-card-body ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.tier-card-body li{font-size:12px;color:var(--ge-muted);font-weight:300;display:flex;gap:7px;align-items:flex-start}
+.tier-card-body li::before{content:'—';color:var(--ge-blue-60);flex-shrink:0}
+.roadmap{background:white;border:1px solid var(--ge-border);border-radius:var(--radius-lg);padding:1.5rem 1.75rem;margin-bottom:2.25rem}
+.roadmap-phases{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:1.25rem;position:relative}
+.roadmap-phases::before{content:'';position:absolute;top:14px;left:14px;right:14px;height:2px;background:var(--ge-border);z-index:0}
+.roadmap-phases::after{content:'';position:absolute;top:14px;left:14px;width:33%;height:2px;background:var(--ge-blue);z-index:0}
+.phase{position:relative;z-index:1;padding-top:38px;padding-right:12px}
+.phase-dot{position:absolute;top:7px;left:0;width:15px;height:15px;border-radius:50%;background:var(--ge-stone);border:2px solid white;box-shadow:0 0 0 2px var(--ge-border-mid)}
+.phase-dot.done{background:var(--ge-blue);box-shadow:0 0 0 2px var(--ge-blue-40)}
+.phase-dot.active{background:var(--ge-blue);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px var(--ge-blue-20)}50%{box-shadow:0 0 0 6px rgba(0,85,140,.12)}}
+.phase-label{font-size:10px;font-weight:700;font-family:var(--font-c);text-transform:uppercase;letter-spacing:.1em;color:var(--ge-muted);margin-bottom:4px}
+.phase-label.now{color:var(--ge-blue)}
+.phase-name{font-size:13px;font-weight:500;color:var(--ge-text);margin-bottom:3px}
+.phase-weeks{font-size:11px;color:var(--ge-blue);font-weight:500}
+.phase-desc{font-size:11.5px;color:var(--ge-muted);margin-top:5px;line-height:1.5;font-weight:300}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,30,55,.6);z-index:200;align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+.modal{background:white;border-radius:var(--radius-lg);padding:2rem;max-width:520px;width:90%;max-height:82vh;overflow-y:auto;position:relative}
+.modal-close{position:absolute;top:1rem;right:1rem;background:var(--ge-stone);border:none;border-radius:5px;width:28px;height:28px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;color:var(--ge-muted)}
+.modal h2{font-family:var(--font-c);font-size:1.3rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin-bottom:.5rem;padding-right:2rem;color:var(--ge-blue)}
+.modal-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem}
+.modal-section{margin-bottom:1.1rem}
+.modal-section h3{font-size:10px;font-weight:700;font-family:var(--font-c);text-transform:uppercase;letter-spacing:.1em;color:var(--ge-muted);margin-bottom:5px}
+.modal-section p{font-size:13.5px;color:var(--ge-text);line-height:1.65;font-weight:300}
+.modal-actions{display:flex;gap:8px;margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--ge-border)}
+.btn-secondary{flex:1;background:var(--ge-stone);color:var(--ge-text);border:1px solid var(--ge-border);border-radius:6px;padding:9px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;transition:background .12s}
+.btn-secondary:hover{background:var(--ge-border)}
+.btn-primary{flex:2;background:var(--ge-blue);color:white;border:none;border-radius:6px;padding:9px;font-size:12px;font-weight:700;font-family:var(--font-c);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .12s}
+.btn-primary:hover{background:var(--ge-blue-80)}
+footer{background:var(--ge-blue);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M0 24 L24 0 L48 24 L24 48 Z' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3C/svg%3E");color:rgba(255,255,255,.55);padding:2rem 2.5rem;margin-top:2rem}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.footer-brand{display:flex;align-items:center;gap:12px}
+.footer-wordmark{font-family:var(--font-c);font-size:15px;font-weight:700;color:white;text-transform:uppercase;letter-spacing:.06em;line-height:1.2}
+.footer-sub{font-size:11px;color:rgba(255,255,255,.45);font-weight:300}
+.footer-links{display:flex;gap:1.5rem;font-size:12px}
+.footer-links a{color:rgba(255,255,255,.5);text-decoration:none}
+.footer-links a:hover{color:rgba(255,255,255,.85)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <div class="ge-symbol">
+      <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="11,2 20,7 20,15 11,20 2,15 2,7" fill="none" stroke="white" stroke-width="1.5"/>
+        <polygon points="11,5 17,8.5 17,13.5 11,17 5,13.5 5,8.5" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width=".75"/>
+        <circle cx="11" cy="11" r="1.5" fill="white"/>
+      </svg>
+    </div>
+    <div>
+      <div class="nav-title">Global Encounters</div>
+      <div class="nav-sub">Youth Development Institute &middot; Resource Hub</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#" class="active" onclick="return false">Resource Hub</a></li>
+    <li><a href="#" onclick="return false">Communities of Practice</a></li>
+    <li><a href="#" onclick="return false">Capacity Building</a></li>
+    <li><a href="#" onclick="return false">Pilots &amp; Partnerships</a></li>
+    <li><a href="#" onclick="return false">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn-contribute" onclick="document.getElementById('submit-modal').classList.add('open')">+ Contribute</button>
+    <div class="avatar">JS</div>
+  </div>
+</nav>
+
+<div class="phase-banner">
+  <span class="phase-pill">Phase 2 &mdash; Active</span>
+  <strong>Content Curation &amp; Population</strong>
+  <span>Weeks 5&ndash;8 &middot; Target: 20&ndash;30 gold standard resources &middot; Pilot testing underway with GE camp teams</span>
+</div>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Pillar 2 &mdash; Global Resource Hub &amp; Communities of Practice</div>
+    <h1>One place for every<br>camp&rsquo;s <span class="accent">collective wisdom.</span></h1>
+    <p class="hero-desc">A global repository of policies, programme designs, operational tools, and curricula developed by youth camp teams across the Jamat &mdash; so no jurisdiction ever starts from scratch.</p>
+    <div class="hero-search">
+      <input type="text" placeholder="Search resources, tools, policies&hellip;" oninput="filterResources(this.value)" />
+      <button>Search</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hero-stat-val">3</div><div class="hero-stat-label">Contributing jurisdictions</div></div>
+      <div><div class="hero-stat-val">24</div><div class="hero-stat-label">Resources available</div></div>
+      <div><div class="hero-stat-val">7</div><div class="hero-stat-label">Resource categories</div></div>
+      <div><div class="hero-stat-val">Q2 2025</div><div class="hero-stat-label">Target full launch</div></div>
+    </div>
+    <div class="logo-notice">&#128206; Official GE logo to be applied once uploaded &middot; Pantone 7462 Blue &amp; brand typefaces applied from visual identity guidelines v6</div>
+  </div>
+</section>
+
+<div class="page">
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Categories</div>
+      <ul class="sidebar-nav">
+        <li><a href="#" class="active" onclick="filterCat('all',this);return false;">&#128194; All resources <span class="count-badge">24</span></a></li>
+        <li><a href="#" onclick="filterCat('planning',this);return false;">&#128193; Programme Planning <span class="count-badge">6</span></a></li>
+        <li><a href="#" onclick="filterCat('design',this);return false;">&#9998;&#65039; Programme Design <span class="count-badge">5</span></a></li>
+        <li><a href="#" onclick="filterCat('operations',this);return false;">&#9881;&#65039; Operations <span class="count-badge">4</span></a></li>
+        <li><a href="#" onclick="filterCat('training',this);return false;">&#127891; Training <span class="count-badge">4</span></a></li>
+        <li><a href="#" onclick="filterCat('policies',this);return false;">&#128203; Policies <span class="count-badge">3</span></a></li>
+        <li><a href="#" onclick="filterCat('mela',this);return false;">&#128202; M&amp;E Frameworks <span class="count-badge">2</span></a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <div class="filter-box">
+        <div class="filter-title">Age Group</div>
+        <div class="filter-chips">
+          <button class="chip on" onclick="toggleChip(this)">6&ndash;12</button>
+          <button class="chip on" onclick="toggleChip(this)">13&ndash;17</button>
+          <button class="chip on" onclick="toggleChip(this)">18&ndash;25</button>
+        </div>
+      </div>
+      <div class="filter-box">
+        <div class="filter-title">Camp Type</div>
+        <div class="filter-chips">
+          <button class="chip on" onclick="toggleChip(this)">Residential</button>
+          <button class="chip on" onclick="toggleChip(this)">Day Camp</button>
+        </div>
+      </div>
+      <div class="filter-box">
+        <div class="filter-title">Region</div>
+        <div class="filter-chips">
+          <button class="chip on" onclick="toggleChip(this)">USA</button>
+          <button class="chip on" onclick="toggleChip(this)">Canada</button>
+          <button class="chip on" onclick="toggleChip(this)">UK</button>
+          <button class="chip" onclick="toggleChip(this)">Europe</button>
+          <button class="chip" onclick="toggleChip(this)">East Africa</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="section-header"><h2 class="section-title">Overview</h2></div>
+    <div class="highlights-rail">
+      <div class="highlight-card"><div class="highlight-label">Tier 3 &middot; Gold Standard</div><div class="highlight-val">4</div><div class="highlight-desc">Resources certified across multiple contexts</div></div>
+      <div class="highlight-card"><div class="highlight-label">Most downloaded</div><div class="highlight-val">12-Wk</div><div class="highlight-desc">Master project plan template &middot; 47 downloads</div></div>
+      <div class="highlight-card"><div class="highlight-label">Newly added</div><div class="highlight-val">3</div><div class="highlight-desc">Resources added this week &middot; pending QA review</div></div>
+    </div>
+
+    <div class="section-header"><h2 class="section-title">Anchor Use Cases</h2><a href="#" class="section-link" onclick="return false">View all &rarr;</a></div>
+    <div class="use-case-grid">
+      <div class="use-case-card" onclick="alert('Opening: Planning a New Camp toolkit')"><div class="uc-icon">&#127957;&#65039;</div><div class="uc-title">Planning a New Camp</div><div class="uc-desc">Starter templates, timelines, budgets, and logistics frameworks to launch a camp from the ground up.</div><div class="uc-count">8 curated resources &rarr;</div></div>
+      <div class="use-case-card" onclick="alert('Opening: Leadership Programme Design pack')"><div class="uc-icon">&#127775;</div><div class="uc-title">Designing a Leadership Programme</div><div class="uc-desc">Curricula, facilitator guides, and session plans for outcomes-led leadership programming.</div><div class="uc-count">6 curated resources &rarr;</div></div>
+      <div class="use-case-card" onclick="alert('Opening: Safeguarding toolkit')"><div class="uc-icon">&#128737;&#65039;</div><div class="uc-title">Safeguarding &amp; Policies Toolkit</div><div class="uc-desc">Core policies including safeguarding, zero tolerance, and mental health frameworks.</div><div class="uc-count">5 curated resources &rarr;</div></div>
+      <div class="use-case-card" onclick="alert('Opening: Facilitator Training pack')"><div class="uc-icon">&#127891;</div><div class="uc-title">Training Facilitators &amp; Staff</div><div class="uc-desc">Onboarding decks, training modules, and role-specific guides for MDs, PLs, and facilitators.</div><div class="uc-count">5 curated resources &rarr;</div></div>
+    </div>
+
+    <div class="section-header"><h2 class="section-title">Resource Library</h2><a href="#" class="section-link" onclick="return false">Browse all 24 &rarr;</a></div>
+    <div class="resource-grid" id="resource-grid">
+      <div class="resource-card" data-cat="planning" data-title="12-week master project plan template" onclick="openResource(0)">
+        <div class="res-icon">&#128196;</div>
+        <div class="res-body"><div class="res-title">12-Week Master Project Plan Template</div><div class="res-meta"><span class="tier-badge tier-3">&#11088; Gold Standard</span><span class="tag">Planning</span><span class="tag">USA &middot; Al-Ummah</span><span class="tag">Residential</span></div><div class="res-desc">Comprehensive pre, live, and post-camp task framework with RAID log and schedule template.</div></div>
+        <div class="res-actions" onclick="event.stopPropagation()"><button class="btn-icon">&#128278;</button><button class="btn-dl">Download</button></div>
+      </div>
+      <div class="resource-card" data-cat="policies" data-title="safeguarding policy framework" onclick="openResource(1)">
+        <div class="res-icon">&#128203;</div>
+        <div class="res-body"><div class="res-title">Safeguarding Policy Framework</div><div class="res-meta"><span class="tier-badge tier-3">&#11088; Gold Standard</span><span class="tag">Policy</span><span class="tag">UK &middot; Mosaic</span><span class="tag">All Ages</span></div><div class="res-desc">Approved safeguarding standards, escalation procedures, and reporting protocols.</div></div>
+        <div class="res-actions" onclick="event.stopPropagation()"><button class="btn-icon">&#128278;</button><button class="btn-dl">Download</button></div>
+      </div>
+      <div class="resource-card" data-cat="design" data-title="leadership curriculum session plans" onclick="openResource(2)">
+        <div class="res-icon">&#128221;</div>
+        <div class="res-body"><div class="res-title">Leadership Curriculum &mdash; Session Plans (6-module series)</div><div class="res-meta"><span class="tier-badge tier-2">&#10003; Endorsed</span><span class="tag">Programme Design</span><span class="tag">Canada &middot; Discovery</span><span class="tag">13&ndash;17</span></div><div class="res-desc">Modular leadership curriculum with facilitator notes, timing guides, and learning outcomes.</div></div>
+        <div class="res-actions" onclick="event.stopPropagation()"><button class="btn-icon">&#128278;</button><button class="btn-dl">Download</button></div>
+      </div>
+      <div class="resource-card" data-cat="training" data-title="facilitator onboarding training deck" onclick="openResource(3)">
+        <div class="res-icon">&#127891;</div>
+        <div class="res-body"><div class="res-title">Facilitator Onboarding Training Deck</div><div class="res-meta"><span class="tier-badge tier-2">&#10003; Endorsed</span><span class="tag">Training</span><span class="tag">USA &middot; Al-Ummah</span><span class="tag">Residential</span></div><div class="res-desc">Full onboarding deck for incoming facilitators including PYD frameworks and camp culture.</div></div>
+        <div class="res-actions" onclick="event.stopPropagation()"><button class="btn-icon">&#128278;</button><button class="btn-dl">Download</button></div>
+      </div>
+      <div class="resource-card" data-cat="operations" data-title="run of show operational master template" onclick="openResource(4)">
+        <div class="res-icon">&#9881;&#65039;</div>
+        <div class="res-body"><div class="res-title">Run of Show &mdash; Operational Master Template</div><div class="res-meta"><span class="tier-badge tier-2">&#10003; Endorsed</span><span class="tag">Operations</span><span class="tag">UK &middot; Mosaic</span><span class="tag">Residential</span></div><div class="res-desc">Hour-by-hour live-camp operations document with logistics task lists and role assignments.</div></div>
+        <div class="res-actions" onclick="event.stopPropagation()"><button class="btn-icon">&#128278;</button><button class="btn-dl">Download</button></div>
+      </div>
+      <div class="resource-card" data-cat="mela" data-title="MELA framework survey templates" onclick="openResource(5)">
+        <div class="res-icon">&#128202;</div>
+        <div class="res-body"><div class="res-title">MELA Framework &amp; Survey Templates</div><div class="res-meta"><span class="tier-badge tier-1">&#9679; Verified</span><span class="tag">M&amp;E</span><span class="tag">Canada &middot; Discovery</span><span class="tag">18&ndash;25</span></div><div class="res-desc">Participant and facilitator survey instruments aligned to GE youth development outcomes.</div></div>
+        <div class="res-actions" onclick="event.stopPropagation()"><button class="btn-icon">&#128278;</button><button class="btn-dl">Download</button></div>
+      </div>
+    </div>
+
+    <div class="section-header"><h2 class="section-title">Quality Assurance &amp; Certification</h2></div>
+    <div class="tiers-grid">
+      <div class="tier-card"><div class="tier-card-head t1"><span class="tier-badge tier-1" style="background:white">Tier 1</span><span class="tier-card-title" style="color:var(--ge-blue)">Verified</span></div><div class="tier-card-body"><ul><li>Reviewed by a qualified peer</li><li>Meets minimum standards checklist</li><li>Complete metadata and context</li></ul></div></div>
+      <div class="tier-card"><div class="tier-card-head t2"><span class="tier-badge" style="background:white;color:var(--ge-blue-60)">Tier 2</span><span class="tier-card-title">Endorsed</span></div><div class="tier-card-body"><ul><li>Meets all Verified criteria</li><li>Used successfully in a real camp</li><li>Reviewed by YD&amp;CI expert panel</li></ul></div></div>
+      <div class="tier-card"><div class="tier-card-head t3"><span class="tier-badge" style="background:white;color:var(--ge-blue)">Tier 3</span><span class="tier-card-title">Gold Standard</span></div><div class="tier-card-body"><ul><li>Proven across multiple contexts</li><li>Strong evidence of outcomes</li><li>Fully packaged for replication</li></ul></div></div>
+    </div>
+
+    <div class="section-header"><h2 class="section-title">Communities of Practice</h2><a href="#" class="section-link" onclick="return false">All communities &rarr;</a></div>
+    <div class="cop-grid">
+      <div class="cop-card"><div class="cop-members"><div class="cop-av">SA</div><div class="cop-av">MK</div><div class="cop-av">JL</div><div class="cop-av" style="background:var(--ge-stone);color:var(--ge-muted)">+4</div></div><div class="cop-title">Programme Directors</div><div class="cop-role">Managing Directors &amp; Programme Leads</div><div class="cop-activity">&#9679; Active &mdash; 3 discussions this week</div></div>
+      <div class="cop-card"><div class="cop-members"><div class="cop-av">RH</div><div class="cop-av">NB</div><div class="cop-av" style="background:var(--ge-stone);color:var(--ge-muted)">+6</div></div><div class="cop-title">Facilitators Network</div><div class="cop-role">Camp Facilitators &amp; Programme Faculty</div><div class="cop-activity">&#9679; Active &mdash; 1 discussion this week</div></div>
+      <div class="cop-card"><div class="cop-members"><div class="cop-av">TA</div><div class="cop-av">ZK</div><div class="cop-av" style="background:var(--ge-stone);color:var(--ge-muted)">+2</div></div><div class="cop-title">Camps Board Members</div><div class="cop-role">Strategic Governance &amp; Oversight</div><div class="cop-activity">&#9711; Upcoming &mdash; next call June 12</div></div>
+    </div>
+
+    <div class="section-header"><h2 class="section-title">Implementation Roadmap</h2></div>
+    <div class="roadmap">
+      <div class="roadmap-phases">
+        <div class="phase"><div class="phase-dot done"></div><div class="phase-label">Phase 1</div><div class="phase-name">Design &amp; Setup</div><div class="phase-weeks">Weeks 1&ndash;4 &#10003; Complete</div><div class="phase-desc">Taxonomy, templates, QA framework, and MVP platform established.</div></div>
+        <div class="phase"><div class="phase-dot active"></div><div class="phase-label now">Phase 2 &middot; Now</div><div class="phase-name">Content Curation</div><div class="phase-weeks">Weeks 5&ndash;8 &middot; In progress</div><div class="phase-desc">Curating 20&ndash;30 gold standard resources with QA and use-case groupings.</div></div>
+        <div class="phase"><div class="phase-dot"></div><div class="phase-label">Phase 3</div><div class="phase-name">Soft Launch</div><div class="phase-weeks">Weeks 9&ndash;10</div><div class="phase-desc">Limited release with onboarding guides and feedback loops.</div></div>
+        <div class="phase"><div class="phase-dot"></div><div class="phase-label">Phase 4</div><div class="phase-name">Full Launch</div><div class="phase-weeks">Weeks 11&ndash;12</div><div class="phase-desc">Global access, contribution cadence formalised, integration with camp cycles.</div></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="ge-symbol"><svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="11,2 20,7 20,15 11,20 2,15 2,7" fill="none" stroke="white" stroke-width="1.5"/><circle cx="11" cy="11" r="1.5" fill="white"/></svg></div>
+      <div><div class="footer-wordmark">Global Encounters</div><div class="footer-sub">Youth Development Institute &middot; Resource Hub &amp; Communities of Practice</div></div>
+    </div>
+    <div class="footer-links">
+      <a href="#" onclick="return false">Contact Resource Hub Lead</a>
+      <a href="#" onclick="return false">Contribute a Resource</a>
+      <a href="#" onclick="return false">the.ismaili/global-encounters</a>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-bg" id="resource-modal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('resource-modal').classList.remove('open')">&#10005;</button>
+    <div id="modal-tier" class="tier-badge tier-2" style="display:inline-block;margin-bottom:10px"></div>
+    <h2 id="modal-title"></h2>
+    <div class="modal-meta" id="modal-tags"></div>
+    <div class="modal-section"><h3>What is this?</h3><p id="modal-what"></p></div>
+    <div class="modal-section"><h3>When should I use it?</h3><p id="modal-when"></p></div>
+    <div class="modal-section"><h3>Context</h3><p id="modal-context"></p></div>
+    <div class="modal-section"><h3>How to adapt it</h3><p id="modal-adapt"></p></div>
+    <div class="modal-section"><h3>Owner / Contact</h3><p id="modal-owner"></p></div>
+    <div class="modal-actions"><button class="btn-secondary" onclick="document.getElementById('resource-modal').classList.remove('open')">Close</button><button class="btn-primary">&#8681; Download PDF</button></div>
+  </div>
+</div>
+
+<div class="modal-bg" id="submit-modal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('submit-modal').classList.remove('open')">&#10005;</button>
+    <h2>Contribute a Resource</h2>
+    <p style="font-size:13px;color:var(--ge-muted);margin-bottom:1.25rem;font-weight:300">Submit your resource for peer review. All contributions go through QA before being published.</p>
+    <div style="display:flex;flex-direction:column;gap:11px">
+      <div><label style="font-size:10px;font-weight:700;font-family:var(--font-c);letter-spacing:.1em;text-transform:uppercase;color:var(--ge-muted);display:block;margin-bottom:5px">Resource title</label><input type="text" placeholder="e.g. Facilitator Training Deck 2024" style="width:100%;padding:9px 12px;border:1px solid var(--ge-border-mid);border-radius:6px;font-family:inherit;font-size:14px;outline:none"></div>
+      <div><label style="font-size:10px;font-weight:700;font-family:var(--font-c);letter-spacing:.1em;text-transform:uppercase;color:var(--ge-muted);display:block;margin-bottom:5px">Category</label><select style="width:100%;padding:9px 12px;border:1px solid var(--ge-border-mid);border-radius:6px;font-family:inherit;font-size:14px;background:white;outline:none"><option>Programme Planning &amp; Management</option><option>Programme Design</option><option>Operations</option><option>Training</option><option>Policies</option><option>Monitoring &amp; Evaluation</option></select></div>
+      <div><label style="font-size:10px;font-weight:700;font-family:var(--font-c);letter-spacing:.1em;text-transform:uppercase;color:var(--ge-muted);display:block;margin-bottom:5px">Your jurisdiction / camp</label><input type="text" placeholder="e.g. UK &middot; Mosaic" style="width:100%;padding:9px 12px;border:1px solid var(--ge-border-mid);border-radius:6px;font-family:inherit;font-size:14px;outline:none"></div>
+      <div><label style="font-size:10px;font-weight:700;font-family:var(--font-c);letter-spacing:.1em;text-transform:uppercase;color:var(--ge-muted);display:block;margin-bottom:5px">Brief description</label><textarea rows="2" placeholder="What is this resource and when was it used?" style="width:100%;padding:9px 12px;border:1px solid var(--ge-border-mid);border-radius:6px;font-family:inherit;font-size:14px;resize:none;outline:none"></textarea></div>
+      <div style="border:2px dashed var(--ge-border-mid);border-radius:7px;padding:1.25rem;text-align:center;color:var(--ge-muted);font-size:13px;cursor:pointer;background:var(--ge-blue-10)">&#128206; Click to upload file (PDF or document)</div>
+    </div>
+    <div class="modal-actions"><button class="btn-secondary" onclick="document.getElementById('submit-modal').classList.remove('open')">Cancel</button><button class="btn-primary" onclick="alert('Submission received. Our team will review and contact you within 5 working days.');document.getElementById('submit-modal').classList.remove('open')">Submit for Review</button></div>
+  </div>
+</div>
+
+<script>
+const resources=[
+  {tier:3,tl:"\u2B50 Gold Standard",tc:"tier-3",title:"12-Week Master Project Plan Template",tags:["Planning","USA \u00B7 Al-Ummah","Residential"],what:"A comprehensive pre-camp, live-camp, and post-camp task planning framework combining a master workplan, RAID log, and schedule template.",when:"Use this when beginning a new camp planning cycle \u2014 typically 12 weeks before camp start date.",context:"Developed by Al-Ummah (USA) for a 7-day residential camp for ages 13\u201317.",adapt:"Replace role names with your local team structure. Adjust the 12-week timeline to match your own lead time.",owner:"Programme Director, Al-Ummah \u00B7 resource-hub@globalencounters.org"},
+  {tier:3,tl:"\u2B50 Gold Standard",tc:"tier-3",title:"Safeguarding Policy Framework",tags:["Policy","UK \u00B7 Mosaic","All Ages"],what:"Comprehensive safeguarding standards covering reporting obligations, escalation pathways, and staff conduct guidelines.",when:"Required reading for all staff and faculty before any camp. Use as the basis for your jurisdiction\u2019s safeguarding policy.",context:"Developed by Mosaic (UK) to meet local regulatory requirements while aligning with global GE standards.",adapt:"Replace UK-specific legal references with your jurisdiction\u2019s equivalent legislation.",owner:"Safeguarding Lead, Mosaic UK \u00B7 resource-hub@globalencounters.org"},
+  {tier:2,tl:"\u2713 Endorsed",tc:"tier-2",title:"Leadership Curriculum \u2014 Session Plans (6-module series)",tags:["Programme Design","Canada \u00B7 Discovery","13\u201317"],what:"A six-session leadership curriculum with full facilitator notes, timing guides, participant workbooks, and mapped learning outcomes.",when:"Use when designing a leadership-themed camp track or standalone leadership programme.",context:"Piloted at Discovery (Canada) over two camp cycles with 13\u201317 year olds.",adapt:"Activities in Sessions 3 and 5 reference Canadian geography \u2014 localise examples and case studies to your context.",owner:"Programme Director, Discovery Canada \u00B7 resource-hub@globalencounters.org"},
+  {tier:2,tl:"\u2713 Endorsed",tc:"tier-2",title:"Facilitator Onboarding Training Deck",tags:["Training","USA \u00B7 Al-Ummah","Residential"],what:"A full-day facilitator onboarding slide deck covering camp values, PYD frameworks, facilitation techniques, and safeguarding.",when:"Use during the staff training weekend, 2\u20134 weeks before camp begins.",context:"Used for three consecutive Al-Ummah camp cycles with new and returning facilitators.",adapt:"Update the camp-specific values slides and emergency contacts. Timings assume an 8-hour training day.",owner:"MD, Al-Ummah \u00B7 resource-hub@globalencounters.org"},
+  {tier:2,tl:"\u2713 Endorsed",tc:"tier-2",title:"Run of Show \u2014 Operational Master Template",tags:["Operations","UK \u00B7 Mosaic","Residential"],what:"Hour-by-hour live-camp operations document with logistics task lists, role assignments, and contingency notes.",when:"Use to coordinate your operations team throughout the live camp \u2014 typically printed and used daily by the MD and Operations Lead.",context:"Developed by Mosaic (UK) for 60-participant residential camps. Colour-coded by role.",adapt:"Adjust meal timing columns to your venue schedule. Add or remove activity blocks to match your programme.",owner:"Operations Lead, Mosaic UK \u00B7 resource-hub@globalencounters.org"},
+  {tier:1,tl:"\u25CF Verified",tc:"tier-1",title:"MELA Framework & Survey Templates",tags:["M&E","Canada \u00B7 Discovery","18\u201325"],what:"A monitoring, evaluation, learning, and accountability framework with participant and facilitator survey instruments.",when:"Deploy participant surveys at camp start and end. Use the facilitator survey in post-camp debrief.",context:"Developed for Discovery (Canada) for young adult camps ages 18\u201325. Validated through one full camp cycle.",adapt:"Adjust outcome statements to match your programme\u2019s specific learning goals. Available in English and French.",owner:"M&E Lead, Discovery Canada \u00B7 resource-hub@globalencounters.org"}
+];
+function openResource(i){
+  const d=resources[i],m=document.getElementById('resource-modal'),t=document.getElementById('modal-tier');
+  t.textContent=d.tl;t.className='tier-badge '+d.tc;
+  document.getElementById('modal-title').textContent=d.title;
+  document.getElementById('modal-tags').innerHTML=d.tags.map(x=>'<span class="tag">'+x+'</span>').join('');
+  document.getElementById('modal-what').textContent=d.what;
+  document.getElementById('modal-when').textContent=d.when;
+  document.getElementById('modal-context').textContent=d.context;
+  document.getElementById('modal-adapt').textContent=d.adapt;
+  document.getElementById('modal-owner').textContent=d.owner;
+  m.classList.add('open');
+}
+function filterResources(v){
+  v=v.toLowerCase();
+  document.querySelectorAll('.resource-card').forEach(c=>{
+    c.style.display=(c.dataset.title+c.innerText.toLowerCase()).includes(v)?'':'none';
+  });
+}
+function filterCat(cat,el){
+  document.querySelectorAll('.resource-card').forEach(c=>{c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none';});
+  document.querySelectorAll('.sidebar-nav a').forEach(a=>a.classList.remove('active'));
+  if(el)el.classList.add('active');
+}
+function toggleChip(el){el.classList.toggle('on');}
+</script>
+</body>
+</html>
