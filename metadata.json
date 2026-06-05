@@ -1,0 +1,6 @@
+{
+  "name": "Global Encounters Resource Hub",
+  "description": "Centralised platform for best practices, tools, and resources supporting the design, delivery, and continuous improvement of global youth camps and enrichment programmes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
